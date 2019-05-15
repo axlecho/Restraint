@@ -22,8 +22,14 @@ class ListViewAdapter(private val context:Context,private val dataSet:List<Info>
         holder.title.text = dataSet[position].name
         holder.time.text = TimeUtils.readableTime(dataSet[position].time)
 
-        val info = context.packageManager.getApplicationInfo(dataSet[position].name, 0)
-        holder.icon.setImageDrawable(info.loadIcon(context.packageManager))
+        try {
+            val info = context.packageManager.getApplicationInfo(dataSet[position].name, 0)
+            holder.icon.setImageDrawable(info.loadIcon(context.packageManager))
+        } catch (e:Exception){
+            holder.icon.setImageResource(R.drawable.ic_launcher_foreground)
+        }
+
+
     }
 
     override fun getItemCount() = dataSet.size
