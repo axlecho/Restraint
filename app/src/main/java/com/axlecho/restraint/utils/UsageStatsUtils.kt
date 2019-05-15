@@ -3,12 +3,12 @@ package com.axlecho.restraint.utils
 import android.app.usage.UsageEvents
 import android.app.usage.UsageStatsManager
 import android.content.Context
-import com.axlecho.restraint.Info
+import com.axlecho.restraint.data.Info
 
 class UsageStatsUtils{
 
     companion object {
-        fun checkpermission(context: Context) :Boolean {
+        fun checkPermission(context: Context) :Boolean {
             val manager = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
             val ret = manager.queryUsageStats(UsageStatsManager.INTERVAL_BEST, 0, TimeUtils.now())
             return ret == null || ret.isEmpty()
@@ -17,7 +17,7 @@ class UsageStatsUtils{
         fun getUsageInfo(context:Context,start:Long,end:Long):List<Info> {
             var last = ""
             var lastTime = -1L
-            val map = HashMap<String,Info>()
+            val map = HashMap<String, Info>()
             val manager = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
             val ret = manager.queryEvents(start,end)
             while(ret.hasNextEvent()) {
