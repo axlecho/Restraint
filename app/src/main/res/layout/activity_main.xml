@@ -8,10 +8,49 @@
         tools:context=".MainActivity">
 
 
+    <LinearLayout
+            android:id="@+id/panel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/list"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_weight="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            tools:background="@android:color/holo_red_dark">
+
+        <TextView
+                android:textSize="24sp"
+                android:id="@+id/phone_usage_panel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                tools:background="@android:color/holo_blue_light"
+                tools:text="game\t: 1h \n comic\t: 48.0min"
+                android:gravity="center_vertical"
+                android:layout_weight="1"/>
+
+        <TextView
+                android:textSize="76sp"
+                android:gravity="center"
+                android:id="@+id/cigarette_panel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                tools:background="@android:color/white"
+                tools:text="5"
+                android:layout_weight="1"/>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+            android:padding="8dp"
+            app:layout_constraintTop_toBottomOf="@id/panel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_weight="2"
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"/>
 
     <TextView
             android:id="@+id/error_tip"
@@ -23,4 +62,5 @@
             android:layout_height="match_parent"
             android:text="@string/no_permission"
             android:visibility="gone"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

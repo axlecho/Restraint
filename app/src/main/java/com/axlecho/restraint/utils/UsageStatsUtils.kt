@@ -62,6 +62,7 @@ class UsageStatsUtils {
         fun saveFilter(context: Context, info: Info, type: String) {
             val spf = context.getSharedPreferences("filter", Context.MODE_PRIVATE)
             val ret = spf.getString(type, null)
+            info.type = type
             val filter: Filter
             if (ret == null) {
                 filter = Filter(type)
@@ -76,16 +77,20 @@ class UsageStatsUtils {
 
         fun applyFilter(filters: List<Filter>, list: MutableList<Info>) {
             for (filter in filters) {
-                if (filter.type == Filter.IGNORE) {
-                    for (target in filter.app) {
-                        val it = list.iterator()
-                        while (it.hasNext()) {
-                            val info = it.next()
-                            if (target.name == info.name) {
-                                it.remove()
-                            }
+                for(app in filter.app) {
+                    for(info in list) {
+                        if(info.name == app.name) {
+                            info.type = app.type
                         }
                     }
+                }
+            }
+
+            val it = list.iterator()
+            while(it.hasNext()) {
+                val info = it.next()
+                if(info.type == Filter.IGNORE) {
+                    it.remove()
                 }
             }
         }

@@ -21,9 +21,9 @@ class TimeUtils {
 
         fun readableTime(time: Long): String {
             return when {
-                time > 1000 * 60 * 60 -> String.format("%.2f",time / 1000.0 / (60 * 60)) +  " h"
-                time > 1000 * 60 -> String.format("%.2f",time / 1000.0f / 60) + " min"
-                time > 1000 -> String.format("%.2f",time / 1000.0f) + " second"
+                time > 1000 * 60 * 60 -> String.format("%.1f",time / 1000.0 / (60 * 60)) +  " h"
+                time > 1000 * 60 -> String.format("%.1f",time / 1000.0f / 60) + " m"
+                time > 1000 -> String.format("%.1f",time / 1000.0f) + " s"
                 else -> "$time"
             }
         }
