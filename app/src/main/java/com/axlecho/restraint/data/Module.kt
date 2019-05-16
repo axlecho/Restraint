@@ -5,3 +5,12 @@ data class Info (
     var count:Long = 0L,
     var time:Long = 0L
 )
+
+data class Filter(
+    val type:String,
+    val app:MutableList<Info> = arrayListOf()
+) {
+    companion object {
+        const val IGNORE = "ignore"
+    }
+}
